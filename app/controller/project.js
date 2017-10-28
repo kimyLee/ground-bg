@@ -12,7 +12,7 @@ module.exports = app => {
       }
       let user = app.getUserinfo(ctx)
       params.creator = user.name
-      params.creator_id = user.id
+      params.creator_id = user.user_id
       await ctx.model.Project.create(params)
       ctx.body = app.CODE.SUCCESS;
     }
@@ -40,10 +40,23 @@ module.exports = app => {
             ctx.body = app.CODE.ERROR_NO_PROJECT_NAME;
             return
         }
+        params.id = params.id - 0
         let res = await service.project.update(params)
         ctx.body = res
     }
     // 删除项目
+    async delProject () {
+        const { ctx, service } = this;
+        let { id } = ctx.request.body;
+        if (!id) {
+            ctx.body = app.CODE.ERROR_NO_PROJECT;
+            return
+        }
+        id = id - 0
+        let res = await service.project.del(id)
+        ctx.body = res
+    }
+    
   }
   return ProjectController;
 };

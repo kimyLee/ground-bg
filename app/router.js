@@ -10,4 +10,5 @@ module.exports = app => {
   app.post('/project/createProject', app.controller.project.createProject);    // 创建项目
   app.get('/project/getProjectList', app.controller.project.getProjectList);   // 查看所有项目信息
   app.post('/project/updateProject', app.controller.project.updateProject);    // 创建项目
+  app.post('/project/delProject', app.controller.project.delProject);          // 删除项目
 };
