@@ -3,12 +3,9 @@ module.exports = app => {
 
   const User = app.model.define('user', {
     user_id: {type: INTEGER, unique: true, primaryKey: 'true', autoIncrement: true},
-    // login: STRING,
     name: STRING(30),
     pwd: STRING(32),
     theme: STRING(30),
-    // logan: {type: STRING(32), allowNull: true},
-    // age: {type: INTEGER, allowNull: true},
     last_sign_in_at: DATE,
     created_at: DATE,
     updated_at: DATE,

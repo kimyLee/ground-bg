@@ -24,6 +24,7 @@ module.exports =  {
       this[code] = {
         SUCCESS: {code: 0, msg: '请求成功处理'},
         FAIL: {code: -1, msg: '请求失败'},
+        ERROR_PARAMS: {code: -1, msg: '参数错误'},
         // 用户模块
         SUCCESS_LOGIN: {code: 0, msg: '登录成功'},
         ERROR_NO_LOGIN: {code: -1, msg: '请先登录'},

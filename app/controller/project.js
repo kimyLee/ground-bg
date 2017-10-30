@@ -56,7 +56,7 @@ module.exports = app => {
         let res = await service.project.del(id)
         ctx.body = res
     }
-    
+    // 添加用户
   }
   return ProjectController;
 };
