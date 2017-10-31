@@ -7,6 +7,7 @@ module.exports = app => {
     name: STRING(30),
     pwd: STRING(32),
     theme: STRING(30),
+    pinyin: STRING(255),
     // logan: {type: STRING(32), allowNull: true},
     // age: {type: INTEGER, allowNull: true},
     last_sign_in_at: DATE,
