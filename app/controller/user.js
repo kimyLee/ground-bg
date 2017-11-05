@@ -23,10 +23,15 @@ module.exports = app => {
       this.ctx.body = app.CODE.SUCCESS;
     }
 
-    // 登录
+    // 登录 todo: 评估流程是否冗余
     async login () {
       const { ctx, service } = this;
       let params = ctx.request.body;
+      let isExistUser = await service.user.isExistUser(params.name)
+      if (!isExistUser) {
+        ctx.body = app.CODE.ERROR_USER_NOEXIST;
+        return
+      }
       let result = await service.user.login(params)
       this.ctx.body = result ? Object.assign(app.CODE.SUCCESS_LOGIN, {data: result}) : app.CODE.ERROR_LOGIN;
     }

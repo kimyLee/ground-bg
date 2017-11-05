@@ -13,7 +13,9 @@ module.exports = app => {
       let user = app.getUserinfo(ctx)
       params.creator = user.name
       params.creator_id = user.user_id
-      await ctx.model.Project.create(params)
+      let pro = await ctx.model.Project.create(params);
+      // 创建了项目后关联本人
+      await ctx.model.UserProjects.tocreateRelation(pro.creator_id, pro.project_id);
       ctx.body = app.CODE.SUCCESS;
     }
 

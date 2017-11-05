@@ -2,6 +2,9 @@
 
 module.exports = app => {
   app.get('/', 'home.index');
+  // 公共模块
+  app.post('/common/searchUser', app.controller.common.searchUser);  // 搜素所有用户
+  
   // 用户登录模块
   app.post('/user/regist', app.controller.user.regist);              // 注册
   app.post('/user/login', app.controller.user.login);                // 登录

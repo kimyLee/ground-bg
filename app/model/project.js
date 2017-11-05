@@ -1,3 +1,4 @@
+
 module.exports = app => {
     const { STRING, INTEGER, DATE } = app.Sequelize;
   
@@ -10,6 +11,11 @@ module.exports = app => {
       created_at: DATE,
       updated_at: DATE
     });
-  
+    /* Project.associate = function() {
+      assert.ok(app.model.User);
+      assert.ok(app.model.Project);
+      assert.ok(app.model.UserProjects);
+      Project.belongsToMany(app.model.User, { through: app.model.UserProjects, foreignKey: 'project_id' })
+    } */
     return Project;
   };

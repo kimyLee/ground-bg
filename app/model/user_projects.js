@@ -2,20 +2,26 @@ module.exports = app => {
     const { STRING, INTEGER, DATE } = app.Sequelize;
   
     const UserProjects  = app.model.define('userProjects', {
+      user_id: INTEGER,
+      project_id: INTEGER,
       is_follow: { type: INTEGER, defaultValue: 0 }
     });
-<<<<<<< HEAD
-    // UserProjects.associate = function() { // 一开始不在回调里面，  app.model.User找不到对象
-    // console.log(666, app.model, 333, this)
-    // app.model.user.belongsToMany(app.model.project, { through: UserProjects, foreignKey: 'user_id' })
-    // app.model.project.belongsToMany(app.model.user, { through: UserProjects, foreignKey: 'project_id' })
-    // }
-=======
+
+    UserProjects.tocreateRelation = async function(uid, pid, follow) {
+      let result = await app.model.UserProjects.create({
+        user_id: uid,
+        project_id: pid,
+        is_follow: follow || false
+      });
+      return result;
+    }
     // 去掉一下注释运行报错
     /* UserProjects.associate = function() { // 一开始不在回调里面，  app.model.User找不到对象
-      // app.model.User.belongsToMany(app.model.Project, { as: 'project', through: UserProjects, foreignKey: 'user_id' })
-      // app.model.Project.belongsToMany(app.model.User, { as: 'user', through: UserProjects, foreignKey: 'project_id' })
+      assert.ok(app.model.User);
+      assert.ok(app.model.Project);
+      assert.ok(app.model.UserProjects);
+      app.model.User.belongsToMany(app.model.Project, { as: 'project', through: UserProjects, foreignKey: 'user_id' })
+      app.model.Project.belongsToMany(app.model.User, { as: 'user', through: UserProjects, foreignKey: 'project_id' })
     } */
->>>>>>> 5d5a70b46cb9692454a56bf29334a60c88497e19
     return UserProjects;
   };

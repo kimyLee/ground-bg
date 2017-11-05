@@ -24,6 +24,7 @@ module.exports =  {
       this[code] = {
         SUCCESS: {code: 0, msg: '请求成功处理'},
         FAIL: {code: -1, msg: '请求失败'},
+        // 公共模块
         // 用户模块
         SUCCESS_LOGIN: {code: 0, msg: '登录成功'},
         ERROR_NO_LOGIN: {code: -1, msg: '请先登录'},
@@ -31,6 +32,7 @@ module.exports =  {
         ERROR_USERNAME: {code: -1, msg: '用户名错误'},
         ERROR_PWD: {code: -1, msg: '用户密码错误'},
         ERROR_USER_EXIST: {code: -1, msg: '该用户已存在'},
+        ERROR_USER_NOEXIST: {code: -1, msg: '用户不存在'},
         // 项目模块
         SUCCESS_CREATE_PROJECT: {code: 0, msg: '创建成功'},
         ERROR_NO_PROJECT_NAME: {code: -1, msg: '项目名不能为空'},
