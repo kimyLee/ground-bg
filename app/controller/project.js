@@ -58,7 +58,24 @@ module.exports = app => {
         let res = await service.project.del(id)
         ctx.body = res
     }
-    
+
+    // 收藏项目
+    async followProject () {
+        const { ctx, service } = this;
+        let { id, follow } = ctx.request.body;
+        if (!id) {
+            ctx.body = app.CODE.ERROR_NO_PROJECT;
+            return
+        }
+        console.log(follow)
+        if (follow === undefined) {
+            ctx.body = app.CODE.ERROR_NO_FOLLOW_PARAMS;
+            return
+        }
+        id = id - 0
+        let res = await ctx.model.UserProjects.followProject(id, follow)
+        ctx.body = res
+    }
   }
   return ProjectController;
 };

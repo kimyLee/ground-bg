@@ -36,6 +36,7 @@ module.exports =  {
         // 项目模块
         SUCCESS_CREATE_PROJECT: {code: 0, msg: '创建成功'},
         ERROR_NO_PROJECT_NAME: {code: -1, msg: '项目名不能为空'},
+        ERROR_NO_FOLLOW_PARAMS: {code: -1, msg: '变更状态不能为空'},
         ERROR_NO_PROJECT: {code: -1, msg: '找不到对应项目'},
         FAIL_CREATE_PROJECT: {code: -1, msg: '创建失败'},
       }

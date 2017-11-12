@@ -15,6 +15,21 @@ module.exports = app => {
       });
       return result;
     }
+    // 收藏项目
+    UserProjects.followProject = async function(pid, follow) {
+      // 先检查项目是否存在
+      let isExist = await app.model.UserProjects.find({'where': { 'project_id': pid }})
+      if (!isExist) {
+        return app.CODE.ERROR_NO_PROJECT
+      }
+      let result = await app.model.UserProjects.update(
+        { 'is_follow': follow},
+        {
+          'where': { 'project_id': pid }
+        }
+      );
+      return app.CODE.SUCCESS;
+    }
     // 去掉一下注释运行报错
     /* UserProjects.associate = function() { // 一开始不在回调里面，  app.model.User找不到对象
       assert.ok(app.model.User);
