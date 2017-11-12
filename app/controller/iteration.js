@@ -1,9 +1,9 @@
 'use strict';
 
 module.exports = app => {
-  class ProjectController extends app.Controller {
-    // 创建项目
-    async createProject () {
+  class IterationController extends app.Controller {
+    // 创建迭代
+    async createIteration () {
       const { ctx, service } = this;
       let params = ctx.request.body;
       if (!params.name) {
