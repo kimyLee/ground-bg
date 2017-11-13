@@ -39,6 +39,11 @@ module.exports =  {
         ERROR_NO_FOLLOW_PARAMS: {code: -1, msg: '变更状态不能为空'},
         ERROR_NO_PROJECT: {code: -1, msg: '找不到对应项目'},
         FAIL_CREATE_PROJECT: {code: -1, msg: '创建失败'},
+        // 迭代模块
+        ERROR_NO_ITERATION: {code: -1, msg: '找不到该迭代'},
+        ERROR_NO_ITERATION_PID: {code: -1, msg: '项目ID不能为空'},
+        ERROR_NO_ITERATION_NAME: {code: -1, msg: '迭代名不能为空'},
+        ERROR_NO_ITERATION_TIME: {code: -1, msg: '迭代开始或结束时间不能为空'},
       }
     }
     return this[code];

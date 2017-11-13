@@ -7,46 +7,43 @@ module.exports = app => {
       const { ctx, service } = this;
       let params = ctx.request.body;
       if (!params.name) {
-        ctx.body = app.CODE.ERROR_NO_PROJECT_NAME;
+        ctx.body = app.CODE.ERROR_NO_ITERATION_NAME;
+        return
+      }
+      if (!params.pid) {
+        ctx.body = app.CODE.ERROR_NO_ITERATION_PID;
+        return
+      }
+      params.project_id = params.pid
+      
+      if (!params.begin || !params.end) {
+        ctx.body = app.CODE.ERROR_NO_ITERATION_TIME;
         return
       }
       let user = app.getUserinfo(ctx)
       params.creator = user.name
       params.creator_id = user.user_id
-      let pro = await ctx.model.Project.create(params);
-      // 创建了项目后关联本人
-      await ctx.model.UserProjects.tocreateRelation(pro.creator_id, pro.project_id);
+      let pro = await ctx.model.Iteration.create(params);
       ctx.body = app.CODE.SUCCESS;
     }
 
-    // 查看所有项目信息
-    async getProjectList () {
+    // 查看所有迭代信息
+    async getIteration () {
         const { ctx } = this;
-        let result = await ctx.model.Project.findAll({
+        let result = await ctx.model.Iteration.findAll({
             'order': [
                 ['created_at', 'DESC']
             ]
         })
-        // 获取关注列表
-        let userId = app.getUserinfo(ctx).user_id
-        let followList = await ctx.model.UserProjects.findAll({
-            'where': {
-                'user_id': userId,
-                'is_follow': 1
-            },
-            'order': [
-                ['created_at', 'DESC']
-            ]
-        })
-        ctx.body = Object.assign(app.CODE.SUCCESS, {data: { projects: result, followList}})
+        ctx.body = Object.assign(app.CODE.SUCCESS, {data: result})
     }
 
-    // 编辑项目
-    async updateProject () {
+    // 编辑迭代
+    async updateIteration () {
         const { ctx, service } = this;
         let params = ctx.request.body;
         if (!params.id) {
-            ctx.body = app.CODE.ERROR_NO_PROJECT;
+            ctx.body = app.CODE.ERROR_NO_ITERATION;
             return
           }
         if (!params.name) {
@@ -54,7 +51,7 @@ module.exports = app => {
             return
         }
         params.id = params.id - 0
-        let res = await service.project.update(params)
+        let res = await service.iteration.update(params)
         ctx.body = res
     }
     // 删除项目
@@ -87,5 +84,5 @@ module.exports = app => {
         ctx.body = res
     }
   }
-  return ProjectController;
+  return IterationController;
 };

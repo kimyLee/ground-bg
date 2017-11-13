@@ -2,6 +2,7 @@ module.exports = app => {
     const { STRING, INTEGER, DATE } = app.Sequelize;
   
     const UserProjects  = app.model.define('userProjects', {
+      user_project_id: {type: INTEGER, unique: true, primaryKey: true, autoIncrement: true},
       user_id: INTEGER,
       project_id: INTEGER,
       is_follow: { type: INTEGER, defaultValue: 0 }

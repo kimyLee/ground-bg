@@ -15,4 +15,9 @@ module.exports = app => {
   app.post('/project/updateProject', app.controller.project.updateProject);    // 创建项目
   app.post('/project/delProject', app.controller.project.delProject);          // 删除项目
   app.post('/project/followProject', app.controller.project.followProject);    // 收藏,取消收藏项目
+  // 迭代模块
+  app.post('/iteration/createIteration', app.controller.iteration.createIteration);    // 收藏,取消收藏项目
+  app.get('/iteration/getIteration', app.controller.iteration.getIteration);   // 查看所有项目信息
+  app.post('/iteration/updateIteration', app.controller.iteration.updateIteration);    // 创建项目
+  app.post('/iteration/delIteration', app.controller.iteration.delIteration);          // 删除项目
 };
