@@ -38,7 +38,7 @@ module.exports = app => {
         ctx.body = Object.assign(app.CODE.SUCCESS, {data: result})
     }
 
-    // 编辑迭代
+    // 编辑迭代 params: id, name, pid
     async updateIteration () {
         const { ctx, service } = this;
         let params = ctx.request.body;
@@ -47,40 +47,34 @@ module.exports = app => {
             return
           }
         if (!params.name) {
-            ctx.body = app.CODE.ERROR_NO_PROJECT_NAME;
+            ctx.body = app.CODE.ERROR_NO_ITERATION_NAME;
             return
         }
-        params.id = params.id - 0
+
+        if (!params.pid) {
+            ctx.body = app.CODE.ERROR_NO_ITERATION_PID;
+            return
+        }
+
+        if (!params.begin || !params.end) {
+            ctx.body = app.CODE.ERROR_NO_ITERATION_TIME;
+            return
+        }
+        params.project_id = params.pid - 0
+        params.iteration_id = params.id - 0
         let res = await service.iteration.update(params)
         ctx.body = res
     }
     // 删除项目
-    async delProject () {
+    async delIteration () {
         const { ctx, service } = this;
         let { id } = ctx.request.body;
         if (!id) {
-            ctx.body = app.CODE.ERROR_NO_PROJECT;
-            return
+          ctx.body = app.CODE.ERROR_NO_ITERATION;
+          return
         }
         id = id - 0
-        let res = await service.project.del(id)
-        ctx.body = res
-    }
-
-    // 收藏项目
-    async followProject () {
-        const { ctx, service } = this;
-        let { id, follow } = ctx.request.body;
-        if (!id) {
-            ctx.body = app.CODE.ERROR_NO_PROJECT;
-            return
-        }
-        if (follow === undefined) {
-            ctx.body = app.CODE.ERROR_NO_FOLLOW_PARAMS;
-            return
-        }
-        id = id - 0
-        let res = await ctx.model.UserProjects.followProject(id, follow)
+        let res = await service.iteration.del(id)
         ctx.body = res
     }
   }

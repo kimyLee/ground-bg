@@ -8,8 +8,8 @@ module.exports = app => {
       name: STRING(255),    // 迭代名
       creator: STRING(50),  // 创建人
       creator_id: INTEGER,  // 创建人ID
-      start: STRING(50),    // 开始时间
-      end: STRING(50),      // 结束时间
+      start: DATE,          // 开始时间
+      end: DATE,            // 结束时间
       created_at: DATE,
       updated_at: DATE
     });
