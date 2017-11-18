@@ -4,6 +4,7 @@ module.exports = app => {
   
     const Task = app.model.define('task', {
       task_id: {type: INTEGER, unique: true, primaryKey: 'true', autoIncrement: true},
+      project_id: INTEGER,    // 所属项目
       iteration_id: INTEGER,  // 所属迭代
       name: STRING(255),     // 任务名
       creator: STRING(50),   // 创建人
@@ -11,7 +12,7 @@ module.exports = app => {
       deadline: DATE,        // 结束时间
       created_at: DATE,
       updated_at: DATE
-      // 外键关联，任务成员表， 任务标签表， 标签表（归属项目），评论表
+      // 外键关联，任务成员表， 任务标签表， 标签表（归属项目），评论表, 清单表
     });
     return Task;
   };

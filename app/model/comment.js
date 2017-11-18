@@ -1,6 +1,6 @@
 
 module.exports = app => {
-    const { STRING, INTEGER, DATE } = app.Sequelize;
+    const { STRING, INTEGER, DATE, TEXT } = app.Sequelize;
   
     const Comment = app.model.define('comment', {
       comment_id: {type: INTEGER, unique: true, primaryKey: 'true', autoIncrement: true},
@@ -9,5 +9,5 @@ module.exports = app => {
       created_at: DATE,
       updated_at: DATE
     });
-    return Tags;
+    return Comment;
   };

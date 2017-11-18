@@ -3,7 +3,7 @@ module.exports = app => {
   
     const TasksTags  = app.model.define('tasksTags', {
       tasks_tags_id: {type: INTEGER, unique: true, primaryKey: true, autoIncrement: true},
-      user_id: INTEGER,
+      tag_id: INTEGER,
       task_id: INTEGER
     });
 
