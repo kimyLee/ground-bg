@@ -4,7 +4,6 @@ module.exports = app => {
   class TagsController extends app.Controller {
     async getTags() {
       const { ctx, service } = this;
-      console.log(ctx.request.body, ctx.request)
       let result = await ctx.model.Tags.getTags(ctx.request.body)
       ctx.body = app.dataToJson(result)
     }

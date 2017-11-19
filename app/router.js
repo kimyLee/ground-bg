@@ -15,10 +15,13 @@ module.exports = app => {
   app.post('/project/updateProject', app.controller.project.updateProject);    // 创建项目
   app.post('/project/delProject', app.controller.project.delProject);          // 删除项目
   app.post('/project/followProject', app.controller.project.followProject);    // 收藏,取消收藏项目
+      // 成员
+  app.post('/project/addMember', app.controller.project.addMember);            // 增加项目成员
+  app.post('/project/delMember', app.controller.project.delMember);            // 删除项目成员
       // 标签
-  app.post('/tags/addTag', app.controller.tags.addTag);                      // 增加标签
-  app.post('/tags/delTag', app.controller.tags.delTag);                      // 删除标签
-  app.post('/tags/getTags', app.controller.tags.getTags);                     // 获取标签列表
+  app.post('/tags/addTag', app.controller.tags.addTag);                        // 增加标签
+  app.post('/tags/delTag', app.controller.tags.delTag);                        // 删除标签
+  app.post('/tags/getTags', app.controller.tags.getTags);                      // 获取标签列表
   // 迭代模块
   app.post('/iteration/createIteration', app.controller.iteration.createIteration);    // 收藏,取消收藏项目
   app.get('/iteration/getIteration', app.controller.iteration.getIteration);           // 查看所有项目信息

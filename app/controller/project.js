@@ -86,6 +86,48 @@ module.exports = app => {
         let res = await ctx.model.UserProjects.followProject(id, follow)
         ctx.body = res
     }
+
+    // 增加项目成员
+    async addMember () {
+        const { ctx, service } = this;
+        let { userId, pid } = ctx.request.body;
+        if (!userId) {
+            ctx.body = app.CODE.ERROR_NO_MEMBER;
+            return
+        }
+        if (!pid) {
+            ctx.body = app.CODE.ERROR_NO_ITERATION_PID;
+            return
+        }
+        // 判断成员是否已存在项目
+        let isExist = await ctx.model.UserProjects.findOne({where: {
+             project_id: pid,
+             user_id: userId 
+        }})
+        if (isExist) {
+            ctx.body = app.CODE.ERROR_MEMBER_HAS_EXIST;
+            return
+        }
+        await this.ctx.model.UserProjects.tocreateRelation(userId, pid)
+        ctx.body = app.CODE.SUCCESS
+    }
+
+    // 删除项目成员
+    async delMember () {
+        const { ctx, service } = this;
+        let { userId, pid } = ctx.request.body;
+        if (!userId) {
+            ctx.body = app.CODE.ERROR_NO_MEMBER;
+        }
+        if (!pid) {
+            ctx.body = app.CODE.ERROR_NO_ITERATION_PID;
+        }
+        await this.ctx.model.UserProjects.destroy({where: { 
+            project_id: pid, 
+            user_id: userId
+        }})
+        ctx.body = app.CODE.SUCCESS
+    }
   }
   return ProjectController;
 };

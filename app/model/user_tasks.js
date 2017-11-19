@@ -6,7 +6,7 @@ module.exports = app => {
       user_id: INTEGER,
       task_id: INTEGER
     });
-
+    // 任务添加成员
     UserTasks.addMember = async function(uid, tid) {
       let result = await app.model.UserTasks.create({
         user_id: uid,
