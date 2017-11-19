@@ -24,8 +24,12 @@ module.exports = app => {
       params.creator = user.name;
       params.creator_id = user.user_id;
       let result = await service.task.createTask(params);
-      // 创建了项目后关联本人
       ctx.body = result;
+    }
+
+    // 更新任务
+    updateTask () {
+        
     }
 
     // 查看所有项目信息
